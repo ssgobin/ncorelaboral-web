@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - New Core</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="./img/logo-wbg.png">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const mensagem = document.getElementById("mensagem").value;
+      const contato = document.querySelector('input[name="contato"]:checked').value;
+      const mensagemFormatada = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. Mensagem: ${mensagem}`;
+
+      if (contato === "whatsapp") {
+        const numero = "5519995945339"; 
+        const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagemFormatada)}`;
+        window.open(url, '_blank');
+      } else {
+        const destinatario = "ncorelaboral@gmail.com";
+        const assunto = "Contato via site New Core";
+        const corpo = encodeURIComponent(mensagemFormatada);
+        const mailto = `mailto:${destinatario}?subject=${encodeURIComponent(assunto)}&body=${corpo}`;
+        window.location.href = mailto;
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+      <!-- Logo da empresa -->
+      <a href="index.html">
+        <img src="img/logo.png" alt="Logo New Core" class="h-12">
+      </a>
+      <nav class="space-x-6 block">
+        <a href="index.html" class="text-[#37474F] hover:text-[#0198AC] font-medium">Início</a>
+        <a href="solucoes.html" class="text-[#37474F] hover:text-[#0198AC] font-medium">Soluções</a>
+        <a href="sobre.html" class="text-[#37474F] hover:text-[#0198AC] font-medium">Sobre</a>
+        <a href="contato.html" class="text-[#0198AC] hover:text-[#0198AC] font-medium">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Formulário -->
+  <div class="max-w-2xl mx-auto sm:py-12 py-8 sm:px-6 px-4 bg-white shadow-md rounded mt-10 mb-10">
+    <h1 class="text-2xl sm:text-3xl font-bold text-[#0198AC] mb-6 text-center">Fale Conosco</h1>
+    <form onsubmit="handleSubmit(event)">
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1" for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required class="w-full border rounded px-3 py-2 text-sm sm:text-base">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1" for="email">E-mail</label>
+        <input type="email" id="email" name="email" required class="w-full border rounded px-3 py-2 text-sm sm:text-base">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1" for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" required rows="4" class="w-full border rounded px-3 py-2 text-sm sm:text-base"></textarea>
+      </div>
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2">Como deseja ser contatado?</label>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <label class="flex items-center">
+            <input type="radio" name="contato" value="whatsapp" checked class="mr-2">
+            WhatsApp
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="contato" value="email" class="mr-2">
+            E-mail
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="bg-[#0198AC] text-white px-6 py-3 rounded font-semibold w-full hover:bg-[#017e91] transition">
+        Enviar
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>
